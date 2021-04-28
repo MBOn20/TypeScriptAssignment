@@ -1,16 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" >
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Mellys Game</title>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <my-beispiel></my-beispiel>
-    <script defer src="./build/bundle.js"></script>
-    <input type="text" id="myInput" />
-</body>
 
+
+    <div id="slider">
+        <button id="prevBtn"><</button>
+        <button id="nextBtn">></button> 
+    <div class="carousel-container">
+        
+            <div class="carousel-slide">
+               
+                <img src="./img/0x0-Model3_10.jpg" alt="">
+                <img src="./img/0x0-Model3_19.jpg" alt="">
+                <img src="./img/0x0-Model3_12.jpg" alt="">
+                <img src="./img/0x0-Model3_13.jpg" alt="">
+                <img src="./img/0x0-Model3_20.jpg" alt="">
+            </div>
+            
+    </div>
+    
+    
+</div>
+
+    <div id="darkModeButton" class="darkModeButton"></div>
+    <div id="startbutton" onclick="start();"></div>
+    <div id="Jumpbutton" onclick="jump();"></div>
+    <span id="score">Score:</span>
+    <div id="JumpGame">
+        <div id="Jumper"></div>
+        <div id="block"></div>
+    </div>
+    
+</body>
+<script defer src="./build/index.js"></script>
 </html>

@@ -1,0 +1,133 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+}
+.darkmode{
+    background-color: black;
+}
+#darkModeButton{
+    position: relative;
+    left: 90%;
+    top: 40px;
+    display: block;
+    width: 90px;
+    height: 40px;
+    background-color: black;
+
+}
+#JumpGame{
+    position: relative;
+    left: 35%;
+    width: 700px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+#Jumper{
+        width: 20px;
+        height: 50px;
+        background-color: brown;
+        position: relative;
+        top: 150px;
+}
+.animationJump{
+        animation: jump 500ms;}
+    
+#block{
+    width: 20px;
+    height: 20px;
+    background-color: brown;
+    position: relative;
+    top: 130px;
+    left: 680px;
+    
+}
+.animationblock{animation: block 2s infinite linear;}
+.animationblock2{animation: block 1s infinite linear;}
+
+@keyframes block{
+    0%{left: 680px;}
+    100%{left: -1px;}
+}
+@keyframes jump{
+    0%{top:150px;}
+    30%{top:100px}
+    100%{top:150px;}
+}
+
+#startbutton {
+    position: relative;
+    left: 50%;
+    top: 40px;
+    display: block;
+    width: 90px;
+    height: 40px;
+    background-color: black;
+  }
+  
+  #Jumpbutton {
+    position: relative;
+    display: block;
+    left: 47%;
+    top: 350px;
+    width: 200px;
+    height: 60px;
+    background-color: rgb(233, 12, 12);
+  }
+  #score{
+      position: relative;
+      top: -1%;
+      left: 35%;
+      font: Roboto;
+      font-size: 30; 
+  }
+#slider{
+    margin: 0;
+    width: 100%;
+    height: 750;
+
+}
+  
+ .carousel-container{ 
+     position: relative;
+     left:8%;
+     height: 100%;
+   
+     width: 84%;
+     
+     overflow: hidden;
+ }
+ .carousel-slide{
+     display: flex;
+     width: 8000px;
+     height: 900px;
+ }
+
+ #prevBtn{
+    position:absolute;
+  
+    font-size: 100;
+    color: #C5C6C7;
+    
+    width: 181px;
+    height: 750;
+    background-color: #0B0C10;
+
+ }
+ #nextBtn{
+    position: absolute;
+    
+    right:0%;
+    font-size: 100;
+    color: #C5C6C7;
+    width: 180px;
+    height: 750;
+    background-color: #0B0C10;
+ }
+ img{
+    display: flex;
+    width: 100%;
+    height: 100%;
+ }
