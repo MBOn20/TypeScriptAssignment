@@ -6,11 +6,12 @@
     <title>Mellys Game</title>
     
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
 
 
-    <div id="slider">
+   <!---- <div id="slider">
         <button id="prevBtn"><</button>
         <button id="nextBtn">></button> 
     <div class="carousel-container">
@@ -27,14 +28,19 @@
     </div>
     
     
-</div>
+</div> -->
 
-    <div id="darkModeButton" class="darkModeButton"></div>
+    <button id="darkModeButton" class="darkModeButton">&#127769;</button>
+    <button id="red" class="changecolor" onclick="change(`red`)"></button>
+    <button id="blue" class="changeColor" onclick="change(`blue`)"></button>
+    <button id="black" class="changeColor" onclick="change(`black`)"></button>
+    <input id="iconColor" type="color" onclick="change()">
     <div id="startbutton" onclick="start();"></div>
     <div id="Jumpbutton" onclick="jump();"></div>
     <span id="score">Score:</span>
     <div id="JumpGame">
-        <div id="Jumper"></div>
+        <div id="Jumper">	
+            &#9829;</div>
         <div id="block"></div>
     </div>
     

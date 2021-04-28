@@ -4,6 +4,12 @@
 }
 body{
 }
+button{
+    color: blanchedalmond;
+    font-size: 12;
+    height: 20px;
+    width: 20px;
+}
 .darkmode{
     background-color: black;
 }
@@ -23,17 +29,24 @@ body{
     width: 700px;
     height: 200px;
     border: 1px solid black;
-}
 
+}
 #Jumper{
         width: 20px;
         height: 50px;
-        background-color: brown;
+        background: brown ;
         position: relative;
         top: 150px;
 }
 .animationJump{
         animation: jump 500ms;}
+.startcolor{background-color: brown ;}
+.red{
+    background-color: rgb(238, 8, 8) !important;
+}
+.blue{
+    background-color: blue !important;
+}
     
 #block{
     width: 20px;

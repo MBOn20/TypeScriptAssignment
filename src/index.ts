@@ -3,25 +3,38 @@ const block: HTMLElement|any = document.getElementById("block");
 let darkmode = localStorage.getItem("darkmode");
 const darkModechange: HTMLElement|any = document.querySelector("#darkModeButton");
 //const body: HTMLElement|any = document.querySelector("body");
-let l : number = 1;
+function change(farbe: string){
+    if(farbe == "red"){
+        Jumper.style.background= "red"
+        } else if(farbe == "blue"){
+            Jumper.style.background= "blue"
+        } else if(farbe == "black"){
+            Jumper.style.background= "black"
+        }
+    }
+   
+
+
+//let background = getComputedStyle(farbe).getPropertyValue("Background");
+
+//console.log(background)
+//Jumper.style.color = farbe.value;
+//Jumper.setAttribute("background-color",background)
+let m : number = 0;
 let i : number = 0;
 
-console.log("Funktioniert")
-
 //Darkmode
- const darkChange=()=>{
+const darkChange=()=>{
 
     document.body.classList.add("darkmode"); 
-        console.log("DarKKKKKKKKKKKK")
-
+        console.log("Dark")
         localStorage.setItem("darkmode", "dark")
 }
 
 const bright=()=>{
 
     document.body.classList.remove("darkmode"); 
-        console.log("HELLLLLLLLLLLL")
-
+        console.log("Hell")
         localStorage.setItem("darkmode", "hell")
 }
 
@@ -45,36 +58,40 @@ darkModechange.addEventListener("click", () =>  {
 }
 }*/
 
-//startbutton
+//Startbutton
+ function changeJumper(){
+
+ }
 function start(){
-    if(l==1){
+    console.log("starrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrt")
+    if(m==0){
         console.log("LEVEL 1 started")
         levelone();
     }
-    else if(l==0) {
+    else if(m==1){
         console.log("LEVEL 2 started");
-        levelTwo();
-    }
-}
+        levelTwo(); }
+    };
+
 //LEVEL1
-const levelone =function() {
+ function levelone() {
     if(block.classList != "animationblock") {
         block.classList.add("animationblock");
         console.log("LEVEL 1 started and animation is added")  
     }
-}
+};
 //Kontrolle LEVEL2
 const checkLevel = setInterval(function(): void{
-        if(l==1 && i == 19){
+        if(m==0 && i == 2){
             alert("Level 1 compilted")
-            l=0;
+            m=1;
             i=0;
             block.classList.remove("animationblock");
             console.log("CheckLevel2 funktioniert" +i)
         }
-            else if(l=0 && i == 4){
+            else if(m==1 && i == 4){
                     alert("You win!")
-                    l=0;
+                    m=0;
                     i=0;
                     block.classList.remove("animationblock2");
                     console.log("CheckLevel2 funktioniert" +i)
@@ -87,9 +104,8 @@ const checkLevel = setInterval(function(): void{
 function levelTwo(){
     if(block.classList != "animationblock2") {
         block.classList.add("animationblock2"); 
-        console.log("LEVEL 2222 started and animation2222 ist added")         
-    }
-    }
+        console.log("LEVEL 2222 started and animation2222 ist added")  ;       
+    }};
 
 //score (hängt ab 9)
 const checkscore = setInterval(function(): void{ 
@@ -103,12 +119,14 @@ const checkscore = setInterval(function(): void{
 
 //Jumpbutton
 function jump(): void{
+    const audio = new Audio("../src/sound/blue.mp3")
+    audio.play()
     if(Jumper.classList != "animationJump") {
         Jumper.classList.add("animationJump");       
-    }
-   
+    }{
     setTimeout(function(): void{
         Jumper.classList.remove("animationJump");} ,400);
+    }
 }
 
 //Verlornen
