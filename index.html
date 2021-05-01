@@ -29,20 +29,28 @@
     
     
 </div> -->
-
-    <button id="darkModeButton" class="darkModeButton">&#127769;</button>
-    <button id="red" class="changecolor" onclick="change(`red`)"></button>
-    <button id="blue" class="changeColor" onclick="change(`blue`)"></button>
-    <button id="black" class="changeColor" onclick="change(`black`)"></button>
-    <input id="iconColor" type="color" onclick="change()">
-    <div id="startbutton" onclick="start();"></div>
-    <div id="Jumpbutton" onclick="jump();"></div>
+<button id="darkModeButton" class="glow-on-hover">&#127769;</button>
+<h1>JUMPER-GAME</h1>
+    <div id="Character"></div>
+    <div id="startbutton" class="myButton" onclick="start();">START</div>
+    <div id="Jumpbutton" class="myButton" onclick="jump();">JUMP!</div>
     <span id="score">Score:</span>
     <div id="JumpGame">
-        <div id="Jumper">	
-            &#9829;</div>
+        <div id="Jumper">&#9829;</div>
         <div id="block"></div>
     </div>
+   
+    <button id="teal" class="glow-on-hover" onclick="change(`teal`)">TEAL</button>
+    <button id="turquoise" class="glow-on-hover" onclick="change(`turquoise`)">BLUE</button>
+    <button id="darkslategrey" class="glow-on-hover" onclick="change(`darkslategrey`)">GREY</button>
+    <br/>
+    <div class="input-bar">
+    <p id="h4-name">Gib dein Namen ein: </p>
+    <p id="h4-quote">Gib dein Motivationsspruch ein:</p>
+</div>
+    <input type="text"  id="inputfield-name">
+    <input type="text"  id="inputfield-quote"><br/>
+    <button id="getValues" class="glow-on-hover" onclick="setCharacter()"> Auslesen</button>
     
 </body>
 <script defer src="./build/index.js"></script>

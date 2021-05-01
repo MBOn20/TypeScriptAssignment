@@ -1,19 +1,68 @@
 const Jumper: HTMLElement|any = document.getElementById("Jumper");
 const block: HTMLElement|any = document.getElementById("block");
 let darkmode = localStorage.getItem("darkmode");
+let characterName = localStorage.getItem("characterName");
+let characterQuote = localStorage.getItem("characterQuote");
+let characterColor = localStorage.getItem("characterColor");
+
+    let Character: HTMLElement|any = document.getElementById("Character");
+ 
 const darkModechange: HTMLElement|any = document.querySelector("#darkModeButton");
 //const body: HTMLElement|any = document.querySelector("body");
+
 function change(farbe: string){
-    if(farbe == "red"){
-        Jumper.style.background= "red"
-        } else if(farbe == "blue"){
-            Jumper.style.background= "blue"
-        } else if(farbe == "black"){
-            Jumper.style.background= "black"
+    if(farbe == "teal"){
+        Jumper.style.background= "teal"
+        localStorage.setItem("characterColor", "teal")
+        } else if(farbe == "turquoise"){
+            Jumper.style.background= "turquoise"
+            localStorage.setItem("characterColor", "turquoise")
+        } else if(farbe == "darkslategrey"){
+            Jumper.style.background= "darkslategrey"
+            localStorage.setItem("characterColor", "darkslategrey")
         }
     }
    
+   Jumper.style.background = characterColor;
+   
+   if(characterName == null || characterName == "" && characterQuote == null || characterQuote == ""){
+    console.log("Locals funktioniert")
+    } else if(characterName !== null  && characterQuote !== null ) {
+        console.log(characterName + characterQuote)
+        Character.innerText ="Hallo " +  characterName + '\n' + "schön das du wieder da bist!" + '\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + characterQuote;
+    };
 
+function setCharacter(){
+    let jumpername = (<HTMLInputElement>document.getElementById("inputfield-name")).value;
+    let quote = (<HTMLInputElement>document.getElementById("inputfield-quote")).value;
+    localStorage.setItem("characterName", jumpername);
+    localStorage.setItem("characterQuote", quote);
+
+    console.log(quote + jumpername + "setCharacter funktionier");
+
+   if(jumpername != "" && quote != ""){
+        Character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + quote;
+        (<HTMLInputElement>document.getElementById("Quote")).value ="";
+        (<HTMLInputElement>document.getElementById("Name")).value ="";
+        console.log(quote + jumpername + "setCharacter if 1 geht");
+    }
+            else if(jumpername == "" && quote == ""){
+            Character.innerText ="Bitte gib zu erst deinen Namen und deinen Spruch ein";
+            console.log(quote + jumpername + "setCharacter if 2 geht");
+            }
+                else if(quote == ""){
+                Character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dir fällt kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Never give up!";
+                (<HTMLInputElement>document.getElementById("Name")).value ="";
+                console.log(quote + jumpername + "setCharacter if 3 geht");
+                }                
+                    else if(jumpername == ""){
+                         Character.innerText ="Bitte gib noch den Namen ein ";
+                         (<HTMLInputElement>document.getElementById("Quote")).value ="";
+                         console.log(quote + jumpername + "setCharacter if 4 geht");
+                    }
+}
+
+    
 
 //let background = getComputedStyle(farbe).getPropertyValue("Background");
 
@@ -22,6 +71,8 @@ function change(farbe: string){
 //Jumper.setAttribute("background-color",background)
 let m : number = 0;
 let i : number = 0;
+
+
 
 //Darkmode
 const darkChange=()=>{
@@ -47,6 +98,13 @@ darkModechange.addEventListener("click", () =>  {
     bright();
    }
 });
+
+if(darkmode == "dark"){
+    darkChange();
+}
+else {
+bright();
+}
 
 /*function darkModeChange(){
     if(body != "darkmode") {
@@ -110,7 +168,7 @@ function levelTwo(){
 //score (hängt ab 9)
 const checkscore = setInterval(function(): void{ 
             const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-            const score: HTMLElement|any = document.getElementById("score");
+            let score: HTMLElement|any = document.getElementById("score");
         if(blockLeft == 0){
              ++i;
             console.log(i);
@@ -143,8 +201,8 @@ const checkLose = setInterval(function(): void{
 
 
 
-//SLIDER
-/*const carouselSlide:Element|any = document.querySelector(".carousel-slide")
+/*//SLIDER
+const carouselSlide:Element|any = document.querySelector(".carousel-slide")
 const carouselImages:HTMLImageElement|any = document.querySelector("img")
 const lastone:HTMLElement|any = document.getElementById("lastClone")
 const one:HTMLElement|any = document.getElementById("firstClone")
@@ -173,15 +231,15 @@ nextBtn.addEventListener("click", ()=> {
 prevBtn.addEventListener("click", ()=> {
     if(counter <= 0){
         console.log("IF 1 GEHTTTT")
-        counter=  5;
+        counter=  4;
         carouselSlide.style.transform= "translateX(" + (-size * counter) + "px)";
 
-    }
+    } else{
     carouselSlide.style.transition = "transform 0.4s ease-in-out";
     counter--;
     console.log(counter)
     carouselSlide.style.transform= "translateX(" + (-size * counter) + "px)";
-});
+}});
 
 
 
