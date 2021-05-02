@@ -4,12 +4,13 @@ let darkmode = localStorage.getItem("darkmode");
 let characterName = localStorage.getItem("characterName");
 let characterQuote = localStorage.getItem("characterQuote");
 let characterColor = localStorage.getItem("characterColor");
-
-    let Character: HTMLElement|any = document.getElementById("Character");
- 
+let Character: HTMLElement|any = document.getElementById("Character");
 const darkModechange: HTMLElement|any = document.querySelector("#darkModeButton");
-//const body: HTMLElement|any = document.querySelector("body");
+let m : number = 0;
+let i : number = 0;
 
+
+//Farbauswahl 
 function change(farbe: string){
     if(farbe == "teal"){
         Jumper.style.background= "teal"
@@ -24,14 +25,28 @@ function change(farbe: string){
     }
    
    Jumper.style.background = characterColor;
-   
-   if(characterName == null || characterName == "" && characterQuote == null || characterQuote == ""){
-    console.log("Locals funktioniert")
-    } else if(characterName !== null  && characterQuote !== null ) {
-        console.log(characterName + characterQuote)
-        Character.innerText ="Hallo " +  characterName + '\n' + "schön das du wieder da bist!" + '\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + characterQuote;
-    };
+//------
 
+//Character nach dem Neuladen setzen
+   if(characterName == null && characterQuote == null || characterQuote == "" &&characterName == ""){
+    Character.innerText ="Fülle doch mal die Felder unten aus"; 
+    console.log("Locals funktioniert");
+    console.log(characterQuote)
+    console.log(characterName)
+
+         } else if(characterName !== null && characterName !== "" &&  characterQuote !== "" && characterQuote !== null) {
+                console.log(characterName ,characterQuote)
+                
+                Character.innerText ="Hallo " +  characterName + '\n' + "schön das du wieder da bist!" + '\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + characterQuote;
+                    
+            }else if(characterName == "" && characterQuote !== ""){
+                         Character.innerText ="Der Spruch war cool, fällt dur noch ein Name ein?"; 
+
+                             }else if(characterName !== "" &&  characterQuote == ""){
+                                 Character.innerText ="Hallo " + characterName +'\n'+ '\n' + " Dir fällt immernoch kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Be yourself!";
+    } ;
+
+//Eingabeüberprüfung und Character setzen
 function setCharacter(){
     let jumpername = (<HTMLInputElement>document.getElementById("inputfield-name")).value;
     let quote = (<HTMLInputElement>document.getElementById("inputfield-quote")).value;
@@ -42,8 +57,6 @@ function setCharacter(){
 
    if(jumpername != "" && quote != ""){
         Character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + quote;
-        (<HTMLInputElement>document.getElementById("Quote")).value ="";
-        (<HTMLInputElement>document.getElementById("Name")).value ="";
         console.log(quote + jumpername + "setCharacter if 1 geht");
     }
             else if(jumpername == "" && quote == ""){
@@ -52,29 +65,28 @@ function setCharacter(){
             }
                 else if(quote == ""){
                 Character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dir fällt kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Never give up!";
-                (<HTMLInputElement>document.getElementById("Name")).value ="";
                 console.log(quote + jumpername + "setCharacter if 3 geht");
                 }                
                     else if(jumpername == ""){
                          Character.innerText ="Bitte gib noch den Namen ein ";
-                         (<HTMLInputElement>document.getElementById("Quote")).value ="";
                          console.log(quote + jumpername + "setCharacter if 4 geht");
                     }
+    (<HTMLInputElement>document.getElementById("inputfield-quote")).value ="";
+    (<HTMLInputElement>document.getElementById("inputfield-name")).value ="";         
 }
 
-    
+//------  
 
 //let background = getComputedStyle(farbe).getPropertyValue("Background");
 
 //console.log(background)
 //Jumper.style.color = farbe.value;
 //Jumper.setAttribute("background-color",background)
-let m : number = 0;
-let i : number = 0;
 
 
 
-//Darkmode
+
+//Darkmode beim clicken
 const darkChange=()=>{
 
     document.body.classList.add("darkmode"); 
@@ -99,6 +111,7 @@ darkModechange.addEventListener("click", () =>  {
    }
 });
 
+//Darkmode beim Neuladen
 if(darkmode == "dark"){
     darkChange();
 }
@@ -117,9 +130,6 @@ bright();
 }*/
 
 //Startbutton
- function changeJumper(){
-
- }
 function start(){
     console.log("starrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrt")
     if(m==0){
@@ -138,6 +148,7 @@ function start(){
         console.log("LEVEL 1 started and animation is added")  
     }
 };
+
 //Kontrolle LEVEL2
 const checkLevel = setInterval(function(): void{
         if(m==0 && i == 2){
