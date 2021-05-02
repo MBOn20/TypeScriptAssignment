@@ -113,7 +113,7 @@ body{
 
 
 
-#Character{
+#character{
     text-align: center;
     color:#66FCF1;
 	font-family:Arial;
@@ -140,7 +140,7 @@ body{
     background-color: black;
 
 }
-#JumpGame{
+#jumpGame{
     position: relative;
     left: 35%;
     width: 700px;
@@ -148,12 +148,13 @@ body{
     background-color: #e5e6e7;
     border: 5px solid #45A29E;
 }
-#Jumper{
+#jumper{
         width: 20px;
         height: 50px;
         background: darkslategrey ;
         position: relative;
         top: 150px;
+        border-radius: 3px;
 }
 .animationJump{
         animation: jump 500ms;}
@@ -165,7 +166,7 @@ body{
     position: relative;
     top: 130px;
     left: 680px;
-    
+    border-radius: 9px;
 }
 .animationblock{animation: block 2s infinite linear;}
 .animationblock2{animation: block 1s infinite linear;}
@@ -190,7 +191,7 @@ body{
     
   }
   
-  #Jumpbutton {
+  #jumpbutton {
     position: relative;
     display: block;
     left: 47%;

@@ -1,35 +1,35 @@
-const Jumper: HTMLElement|any = document.getElementById("Jumper");
+const jumper: HTMLElement|any = document.getElementById("jumper");
 const block: HTMLElement|any = document.getElementById("block");
 let darkmode = localStorage.getItem("darkmode");
 let characterName = localStorage.getItem("characterName");
 let characterQuote = localStorage.getItem("characterQuote");
 let characterColor = localStorage.getItem("characterColor");
-let Character: HTMLElement|any = document.getElementById("Character");
+let character: HTMLElement|any = document.getElementById("character");
 const darkModechange: HTMLElement|any = document.querySelector("#darkModeButton");
-let m : number = 0;
-let i : number = 0;
+let levelcounter : number = 0;
+let scorecounter : number = 0;
 
 
 //Farbauswahl 
 function change(farbe: string){
     if(farbe == "teal"){
-        Jumper.style.background= "teal"
+        jumper.style.background= "teal";
         localStorage.setItem("characterColor", "teal")
         } else if(farbe == "turquoise"){
-            Jumper.style.background= "turquoise"
+            jumper.style.background= "turquoise";
             localStorage.setItem("characterColor", "turquoise")
         } else if(farbe == "darkslategrey"){
-            Jumper.style.background= "darkslategrey"
+            jumper.style.background= "darkslategrey";
             localStorage.setItem("characterColor", "darkslategrey")
         }
     }
    
-   Jumper.style.background = characterColor;
+   jumper.style.background = characterColor;
 //------
 
 //Character nach dem Neuladen setzen
    if(characterName == null && characterQuote == null || characterQuote == "" &&characterName == ""){
-    Character.innerText ="Fülle doch mal die Felder unten aus"; 
+    character.innerText ="Fülle doch mal die Felder unten aus"; 
     console.log("Locals funktioniert");
     console.log(characterQuote)
     console.log(characterName)
@@ -37,13 +37,13 @@ function change(farbe: string){
          } else if(characterName !== null && characterName !== "" &&  characterQuote !== "" && characterQuote !== null) {
                 console.log(characterName ,characterQuote)
                 
-                Character.innerText ="Hallo " +  characterName + '\n' + "schön das du wieder da bist!" + '\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + characterQuote;
+                character.innerText ="Hallo " +  characterName + '\n' + "schön das du wieder da bist!" + '\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + characterQuote;
                     
             }else if(characterName == "" && characterQuote !== ""){
-                         Character.innerText ="Der Spruch war cool, fällt dur noch ein Name ein?"; 
+                         character.innerText ="Der Spruch war cool, fällt dur noch ein Name ein?"; 
 
                              }else if(characterName !== "" &&  characterQuote == ""){
-                                 Character.innerText ="Hallo " + characterName +'\n'+ '\n' + " Dir fällt immernoch kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Be yourself!";
+                                 character.innerText ="Hallo " + characterName +'\n'+ '\n' + " Dir fällt immernoch kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Be yourself!";
     } ;
 
 //Eingabeüberprüfung und Character setzen
@@ -56,19 +56,19 @@ function setCharacter(){
     console.log(quote + jumpername + "setCharacter funktionier");
 
    if(jumpername != "" && quote != ""){
-        Character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + quote;
+        character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + quote;
         console.log(quote + jumpername + "setCharacter if 1 geht");
     }
             else if(jumpername == "" && quote == ""){
-            Character.innerText ="Bitte gib zu erst deinen Namen und deinen Spruch ein";
+            character.innerText ="Bitte gib zu erst deinen Namen und deinen Spruch ein";
             console.log(quote + jumpername + "setCharacter if 2 geht");
             }
                 else if(quote == ""){
-                Character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dir fällt kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Never give up!";
+                character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dir fällt kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Never give up!";
                 console.log(quote + jumpername + "setCharacter if 3 geht");
                 }                
                     else if(jumpername == ""){
-                         Character.innerText ="Bitte gib noch den Namen ein ";
+                         character.innerText ="Bitte gib noch den Namen ein ";
                          console.log(quote + jumpername + "setCharacter if 4 geht");
                     }
     (<HTMLInputElement>document.getElementById("inputfield-quote")).value ="";
@@ -97,8 +97,8 @@ const darkChange=()=>{
 const bright=()=>{
 
     document.body.classList.remove("darkmode"); 
-        console.log("Hell")
-        localStorage.setItem("darkmode", "hell")
+        console.log("Bright")
+        localStorage.setItem("darkmode", "bright")
 }
 
 darkModechange.addEventListener("click", () =>  {
@@ -131,12 +131,12 @@ bright();
 
 //Startbutton
 function start(){
-    console.log("starrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrt")
-    if(m==0){
+    console.log("Game started")
+    if(levelcounter==0){
         console.log("LEVEL 1 started")
         levelone();
     }
-    else if(m==1){
+    else if(levelcounter==1){
         console.log("LEVEL 2 started");
         levelTwo(); }
     };
@@ -151,19 +151,19 @@ function start(){
 
 //Kontrolle LEVEL2
 const checkLevel = setInterval(function(): void{
-        if(m==0 && i == 2){
+        if(levelcounter==0 && scorecounter == 2){
             alert("Level 1 compilted")
-            m=1;
-            i=0;
+            levelcounter=1;
+            scorecounter=0;
             block.classList.remove("animationblock");
-            console.log("CheckLevel2 funktioniert" +i)
+            console.log("CheckLevel1-win funktioniert " +scorecounter)
         }
-            else if(m==1 && i == 4){
+            else if(levelcounter==1 && scorecounter == 4){
                     alert("You win!")
-                    m=0;
-                    i=0;
+                    levelcounter=0;
+                    scorecounter=0;
                     block.classList.remove("animationblock2");
-                    console.log("CheckLevel2 funktioniert" +i)
+                    console.log("CheckLevel2-win funktioniert" +scorecounter)
         
             }
     
@@ -173,40 +173,40 @@ const checkLevel = setInterval(function(): void{
 function levelTwo(){
     if(block.classList != "animationblock2") {
         block.classList.add("animationblock2"); 
-        console.log("LEVEL 2222 started and animation2222 ist added")  ;       
+        console.log("LEVEL 2222 started and animation2 is added")  ;       
     }};
 
 //score (hängt ab 9)
 const checkscore = setInterval(function(): void{ 
             const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
             let score: HTMLElement|any = document.getElementById("score");
-        if(blockLeft == 0){
-             ++i;
-            console.log(i);
-            score.innerText ="Score: " + i;
+    if(blockLeft == 0){
+        ++scorecounter;
+        console.log(scorecounter);
+        score.innerText ="Score: " + scorecounter;
 }}, 10);
 
 //Jumpbutton
 function jump(): void{
     const audio = new Audio("../src/sound/blue.mp3")
     audio.play()
-    if(Jumper.classList != "animationJump") {
-        Jumper.classList.add("animationJump");       
-    }{
-    setTimeout(function(): void{
-        Jumper.classList.remove("animationJump");} ,400);
-    }
+         if(jumper.classList != "animationJump") {
+            jumper.classList.add("animationJump");       
+            }{
+                setTimeout(function(): void{
+                jumper.classList.remove("animationJump");} ,400);
+            }
 }
 
 //Verlornen
 const checkLose = setInterval(function(): void{ 
-        const JumperTop : number = parseInt(window.getComputedStyle(Jumper).getPropertyValue("top"));
+        const JumperTop : number = parseInt(window.getComputedStyle(jumper).getPropertyValue("top"));
         const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    if(blockLeft < 20 && blockLeft > 0 && JumperTop >= 130){
-        block.style.animationJump = "none";
-        alert("Oh noo! You lose! Do you want to play again?");
-        window.location.reload();
-    }
+            if(blockLeft < 20 && blockLeft > 0 && JumperTop >= 130){
+                 block.style.animationJump = "none";
+                 alert("Oh noo! You lose! Do you want to play again?");
+                 window.location.reload();
+            }
 
 }, 10);
 
