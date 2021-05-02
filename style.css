@@ -151,7 +151,7 @@ body{
 #jumper{
         width: 20px;
         height: 50px;
-        background: darkslategrey ;
+        background: turquoise ;
         position: relative;
         top: 150px;
         border-radius: 3px;
@@ -181,11 +181,15 @@ body{
     100%{top:150px;}
 }
 
+#button-menu{
+    display: flex;
+top: 315;
+position: relative;
+}
+
 #startbutton {
     position: relative;
-    left: 50%;
-    top: 40px;
-    display: block;
+    left: 44%;
     width: 90px;
     height: 40px;
     
@@ -193,9 +197,7 @@ body{
   
   #jumpbutton {
     position: relative;
-    display: block;
-    left: 47%;
-    top: 350px;
+    left: 52%;
     width: 90px;
     height: 40px;
   }
@@ -296,6 +298,8 @@ p{
      margin: 20px;
  }
  h1{
+     position: relative;
+   left: 60px;
      text-align: center;
      color: #45A29E;
      font-family: Arial;

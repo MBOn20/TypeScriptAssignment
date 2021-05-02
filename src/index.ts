@@ -1,18 +1,21 @@
 const jumper: HTMLElement|any = document.getElementById("jumper");
 const block: HTMLElement|any = document.getElementById("block");
+const darkModechange: HTMLElement|any = document.querySelector("#darkModeButton");
 let darkmode = localStorage.getItem("darkmode");
 let characterName = localStorage.getItem("characterName");
 let characterQuote = localStorage.getItem("characterQuote");
 let characterColor = localStorage.getItem("characterColor");
 let character: HTMLElement|any = document.getElementById("character");
-const darkModechange: HTMLElement|any = document.querySelector("#darkModeButton");
 let levelcounter : number = 0;
 let scorecounter : number = 0;
 
 
 //Farbauswahl 
 function change(farbe: string){
-    if(farbe == "teal"){
+    jumper.style.background= farbe;
+    localStorage.setItem("characterColor", farbe);}
+
+   /* if(farbe == "teal"){
         jumper.style.background= "teal";
         localStorage.setItem("characterColor", "teal")
         } else if(farbe == "turquoise"){
@@ -21,9 +24,9 @@ function change(farbe: string){
         } else if(farbe == "darkslategrey"){
             jumper.style.background= "darkslategrey";
             localStorage.setItem("characterColor", "darkslategrey")
-        }
-    }
-   
+        }*/
+    
+
    jumper.style.background = characterColor;
 //------
 
@@ -77,28 +80,19 @@ function setCharacter(){
 
 //------  
 
-//let background = getComputedStyle(farbe).getPropertyValue("Background");
-
-//console.log(background)
-//Jumper.style.color = farbe.value;
-//Jumper.setAttribute("background-color",background)
-
-
-
-
 //Darkmode beim clicken
 const darkChange=()=>{
 
     document.body.classList.add("darkmode"); 
-        console.log("Dark")
-        localStorage.setItem("darkmode", "dark")
+        console.log("Dark");
+        localStorage.setItem("darkmode", "dark");
 }
 
 const bright=()=>{
 
     document.body.classList.remove("darkmode"); 
-        console.log("Bright")
-        localStorage.setItem("darkmode", "bright")
+        console.log("Bright");
+        localStorage.setItem("darkmode", "bright");
 }
 
 darkModechange.addEventListener("click", () =>  {
@@ -107,7 +101,7 @@ darkModechange.addEventListener("click", () =>  {
         darkChange();
     }
    else {
-    bright();
+        bright();
    }
 });
 
@@ -116,33 +110,25 @@ if(darkmode == "dark"){
     darkChange();
 }
 else {
-bright();
+    bright();
 }
-
-/*function darkModeChange(){
-    if(body != "darkmode") {
-        document.body.classList.add("darkmode"); 
-        console.log("DarKKKKKKKKKKKK")
-} else{
-        body.classList.remove("darkmode")
-        console.log("HELLLLL")
-}
-}*/
 
 //Startbutton
 function start(){
-    console.log("Game started")
-    if(levelcounter==0){
-        console.log("LEVEL 1 started")
-        levelone();
-    }
-    else if(levelcounter==1){
-        console.log("LEVEL 2 started");
-        levelTwo(); }
-    };
+    console.log("Game started");
+
+        if(levelcounter==0){
+            console.log("LEVEL 1 started")
+            levelOne();
+        }
+        else if(levelcounter==1){
+            console.log("LEVEL 2 started");
+            levelTwo();
+        }
+};
 
 //LEVEL1
- function levelone() {
+ function levelOne() {
     if(block.classList != "animationblock") {
         block.classList.add("animationblock");
         console.log("LEVEL 1 started and animation is added")  
@@ -151,21 +137,24 @@ function start(){
 
 //Kontrolle LEVEL2
 const checkLevel = setInterval(function(): void{
-        if(levelcounter==0 && scorecounter == 2){
-            alert("Level 1 compilted")
-            levelcounter=1;
-            scorecounter=0;
-            block.classList.remove("animationblock");
-            console.log("CheckLevel1-win funktioniert " +scorecounter)
+        if(levelcounter==0 && scorecounter == 5){
+            const levelOneSound = new Audio("../src/sound/Levelonesound.wav");
+            levelOneSound.play();
+                levelcounter=1;
+                scorecounter=0;
+                    block.classList.remove("animationblock");
+                     console.log("CheckLevel1-win funktioniert " +scorecounter)
+                     alert("Level 1 compilted")
         }
-            else if(levelcounter==1 && scorecounter == 4){
-                    alert("You win!")
-                    levelcounter=0;
-                    scorecounter=0;
+        else if(levelcounter==1 && scorecounter == 4){
+            const winSound = new Audio("../src/sound/Winsound.wav");
+            winSound.play();
+                levelcounter=0;
+                scorecounter=0;
                     block.classList.remove("animationblock2");
-                    console.log("CheckLevel2-win funktioniert" +scorecounter)
-        
-            }
+                     console.log("CheckLevel2-win funktioniert" +scorecounter);
+                     alert("You win!");
+        }
     
 },10);
 
@@ -173,7 +162,7 @@ const checkLevel = setInterval(function(): void{
 function levelTwo(){
     if(block.classList != "animationblock2") {
         block.classList.add("animationblock2"); 
-        console.log("LEVEL 2222 started and animation2 is added")  ;       
+        console.log("LEVEL 2 started and animation2 is added")  ;       
     }};
 
 //score (hängt ab 9)
@@ -188,10 +177,10 @@ const checkscore = setInterval(function(): void{
 
 //Jumpbutton
 function jump(): void{
-    const audio = new Audio("../src/sound/blue.mp3")
-    audio.play()
-         if(jumper.classList != "animationJump") {
-            jumper.classList.add("animationJump");       
+    const jumpsound = new Audio("../src/sound/Jumpsound.wav")
+        jumpsound.play()
+            if(jumper.classList != "animationJump") {
+                jumper.classList.add("animationJump");       
             }{
                 setTimeout(function(): void{
                 jumper.classList.remove("animationJump");} ,400);
@@ -203,7 +192,8 @@ const checkLose = setInterval(function(): void{
         const JumperTop : number = parseInt(window.getComputedStyle(jumper).getPropertyValue("top"));
         const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
             if(blockLeft < 20 && blockLeft > 0 && JumperTop >= 130){
-                 block.style.animationJump = "none";
+                 block.style.animationblock = "none";
+                 block.style.animationblock2 = "none";
                  alert("Oh noo! You lose! Do you want to play again?");
                  window.location.reload();
             }
@@ -212,61 +202,3 @@ const checkLose = setInterval(function(): void{
 
 
 
-/*//SLIDER
-const carouselSlide:Element|any = document.querySelector(".carousel-slide")
-const carouselImages:HTMLImageElement|any = document.querySelector("img")
-const lastone:HTMLElement|any = document.getElementById("lastClone")
-const one:HTMLElement|any = document.getElementById("firstClone")
-const nextBtn:Element|any = document.querySelector("#nextBtn");
-const prevBtn:Element|any = document.querySelector("#prevBtn");
-let counter:number = 0;
-const size = 1600;
-
-
-
-
-nextBtn.addEventListener("click", ()=> {
-    if(counter >= 4){
-        console.log("IF plpplpllllllllllllllllllllllllllllllllll GEHTTTT")
-        counter=0;
-        carouselSlide.style.transition = "transform 0.4s ease-in-out";
-        carouselSlide.style.transform = "translateX(" + (-size * counter) + "px)";
-
-    } else{
-    carouselSlide.style.transition = "transform 0.4s ease-in-out";
-    counter++;
-    console.log(counter)
-    carouselSlide.style.transform = "translateX(" + (-size * counter) + "px)";
-}});
-
-prevBtn.addEventListener("click", ()=> {
-    if(counter <= 0){
-        console.log("IF 1 GEHTTTT")
-        counter=  4;
-        carouselSlide.style.transform= "translateX(" + (-size * counter) + "px)";
-
-    } else{
-    carouselSlide.style.transition = "transform 0.4s ease-in-out";
-    counter--;
-    console.log(counter)
-    carouselSlide.style.transform= "translateX(" + (-size * counter) + "px)";
-}});
-
-
-
-/*function check(){
-    console.log("IF908hgzjhzhujvbcfgjzvcfghzjh GEHTTTT")
-    if(counter< -1){
-        console.log("IF 1 GEHTTTT")
-        carouselSlide.style.transition="none";
-        counter= carouselImages.length -2;
-        carouselSlide.style.transform= "translateX(" + (-size * counter) + "px)";
-
-    }if(counter>5){
-        console.log("IF 1 GEHTTTT")
-        carouselSlide.style.transition="none";
-        counter= carouselImages.length -counter;
-        carouselSlide.style.transform= "translateX(" + (-size * counter) + "px)";
-
-}
-};*/
