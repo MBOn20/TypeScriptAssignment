@@ -1,11 +1,11 @@
-const jumper: HTMLElement|any = document.getElementById("jumper");
-const block: HTMLElement|any = document.getElementById("block");
-const darkModechange: HTMLElement|any = document.querySelector("#darkModeButton");
+const jumper = document.getElementById("jumper") as HTMLElement;
+const block = document.getElementById("block") as HTMLElement;
+const darkModechange = document.querySelector("#darkModeButton") as HTMLElement;
 let darkmode = localStorage.getItem("darkmode");
 let characterName = localStorage.getItem("characterName");
 let characterQuote = localStorage.getItem("characterQuote");
 let characterColor = localStorage.getItem("characterColor");
-let character: HTMLElement|any = document.getElementById("character");
+let character = document.getElementById("character") as HTMLElement;
 let levelcounter : number = 0;
 let scorecounter : number = 0;
 
@@ -27,7 +27,7 @@ function change(farbe: string){
         }*/
     
 
-   jumper.style.background = characterColor;
+  // jumper.style.background = characterColor;
 //------
 
 //Character nach dem Neuladen setzen
@@ -119,21 +119,31 @@ function start(){
 
         if(levelcounter==0){
             console.log("LEVEL 1 started")
-            levelOne();
+            level("animationblock");
         }
         else if(levelcounter==1){
             console.log("LEVEL 2 started");
-            levelTwo();
+            level("animationblock2");
         }
 };
 
+function level(animation: string){
+    block.classList.add(animation);
+}
+//LEVEL2
+/*function levelTwo(){
+    if(block.classList != "animationblock2") {
+        block.classList.add("animationblock2"); 
+        console.log("LEVEL 2 started and animation2 is added")  ;       
+    }};*/
 //LEVEL1
- function levelOne() {
+ /*function levelOne() {
     if(block.classList != "animationblock") {
         block.classList.add("animationblock");
         console.log("LEVEL 1 started and animation is added")  
     }
-};
+};*/
+
 
 //Kontrolle LEVEL2
 const checkLevel = setInterval(function(): void{
@@ -159,44 +169,43 @@ const checkLevel = setInterval(function(): void{
 },10);
 
 //LEVEL2
-function levelTwo(){
+/*function levelTwo(){
     if(block.classList != "animationblock2") {
         block.classList.add("animationblock2"); 
         console.log("LEVEL 2 started and animation2 is added")  ;       
-    }};
+    }};*/
 
 //score (hängt ab 9)
 const checkscore = setInterval(function(): void{ 
-            const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-            let score: HTMLElement|any = document.getElementById("score");
-    if(blockLeft == 0){
-        ++scorecounter;
-        console.log(scorecounter);
-        score.innerText ="Score: " + scorecounter;
+    const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+    let score= document.getElementById("score") as HTMLElement;
+if(blockLeft == 0){
+++scorecounter;
+console.log(scorecounter);
+score.innerText ="Score: " + scorecounter;
 }}, 10);
 
-//Jumpbutton
 function jump(): void{
     const jumpsound = new Audio("../src/sound/Jumpsound.wav")
         jumpsound.play()
-            if(jumper.classList != "animationJump") {
-                jumper.classList.add("animationJump");       
-            }{
-                setTimeout(function(): void{
-                jumper.classList.remove("animationJump");} ,400);
-            }
+        jumper.classList.add("animationJump");  
+        {setTimeout(function(): void {
+            jumper.classList.remove("animationJump");},400);
+        }
+                       
+            
 }
 
-//Verlornen
+
 const checkLose = setInterval(function(): void{ 
-        const JumperTop : number = parseInt(window.getComputedStyle(jumper).getPropertyValue("top"));
-        const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-            if(blockLeft < 20 && blockLeft > 0 && JumperTop >= 130){
-                 block.style.animationblock = "none";
-                 block.style.animationblock2 = "none";
-                 alert("Oh noo! You lose! Do you want to play again?");
-                 window.location.reload();
-            }
+    const JumperTop : number = parseInt(window.getComputedStyle(jumper).getPropertyValue("top"));
+    const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+        if(blockLeft < 20 && blockLeft > 0 && JumperTop >= 130){
+            block.classList.remove("animationblock2");
+            block.classList.remove("animationblock");
+             alert("Oh noo! You lose! Do you want to play again?");
+             window.location.reload();
+        }
 
 }, 10);
 
