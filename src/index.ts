@@ -1,35 +1,17 @@
-import {block, character, darkmode, darkModechange, darkslategrey, getValues, jumper, jumpevent, startevent, teal, turquoise,} from "./DomUnits";
+import {block, character, darkModechange, darkslategrey, getValues, jumper, jumpevent, startevent, teal, turquoise,} from "./DomUnits";
 import { change } from "./colorChange";
 import { refresh } from "./refresh";
 import { levelcounter, startInterval } from "./interval";
 
-
-
-
 window.addEventListener("load", refresh);
 window.addEventListener("load", startInterval);
-
 turquoise.addEventListener('click',function(){change("turquoise")});
 teal.addEventListener('click',function(){change("teal")});
 darkslategrey.addEventListener('click',function(){change("darkslategrey")});
+getValues.addEventListener("click", setCharacter);
+startevent.addEventListener("click", start);
+jumpevent.addEventListener("click", jump);
 
-//Farbauswahl 
-   /* if(farbe == "teal"){
-        jumper.style.background= "teal";
-        localStorage.setItem("characterColor", "teal")
-        } else if(farbe == "turquoise"){
-            jumper.style.background= "turquoise";
-            localStorage.setItem("characterColor", "turquoise")
-        } else if(farbe == "darkslategrey"){
-            jumper.style.background= "darkslategrey";
-            localStorage.setItem("characterColor", "darkslategrey")
-        }*/
-    
-
-  
-//------
-
-    getValues.addEventListener("click", setCharacter);
 //Eingabeüberprüfung und Character setzen
 function setCharacter(){
     let jumpername = (<HTMLInputElement>document.getElementById("inputfield-name")).value;
@@ -59,39 +41,10 @@ function setCharacter(){
     (<HTMLInputElement>document.getElementById("inputfield-name")).value ="";         
 }
 
-//------  
 
-//Darkmode beim clicken
-const darkChange=()=>{
-
-    document.body.classList.add("darkmode"); 
-        console.log("Dark");
-        localStorage.setItem("darkmode", "dark");
-}
-
-const bright=()=>{
-
-    document.body.classList.remove("darkmode"); 
-        console.log("Bright");
-        localStorage.setItem("darkmode", "bright");
-}
-
-darkModechange.addEventListener("click", () =>  {
-    
-    if(darkmode !== "dark"){
-        darkChange();
-    }
-   else {
-        bright();
-   }
-});
 
 //Startbutton
-
-startevent.addEventListener("click", start);
 function start(){
-            
-            
             console.log("Game started");
 
         if(levelcounter==0){
@@ -108,30 +61,10 @@ function start(){
 function level(animation: string){
     block.classList.add(animation);
 }
-//LEVEL2
-/*function levelTwo(){
-    if(block.classList != "animationblock2") {
-        block.classList.add("animationblock2"); 
-        console.log("LEVEL 2 started and animation2 is added")  ;       
-    }};*/
-//LEVEL1
- /*function levelOne() {
-    if(block.classList != "animationblock") {
-        block.classList.add("animationblock");
-        console.log("LEVEL 1 started and animation is added")  
-    }
-};*/
-
-
-
-//Kontrolle LEVEL2
-
-
-
 
 //Jumpbutton
 
-jumpevent.addEventListener("click", jump);
+
 function jump(): void{
     const jumpsound = new Audio("../src/sound/Jumpsound.wav")
         jumpsound.play();
@@ -142,4 +75,29 @@ function jump(): void{
 }
 
 
+ 
 
+  //Darkmode beim clicken
+  const darkChange=()=>{
+
+    document.body.classList.add("darkmode"); 
+        console.log("Dark");
+        localStorage.setItem("darkmode", "dark");
+}
+
+const bright=()=>{
+
+    document.body.classList.remove("darkmode"); 
+        console.log("Bright");
+        localStorage.setItem("darkmode", "bright");
+}
+
+darkModechange.addEventListener("click", () =>  {
+    
+    if(document.body.className !== "darkmode"){
+        darkChange();
+    }
+   else {
+        bright();
+   }
+});

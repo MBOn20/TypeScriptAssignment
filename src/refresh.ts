@@ -26,12 +26,12 @@ export function refresh(){
     if(darkmode == "dark"){
         document.body.classList.add("darkmode"); 
         console.log("Dark");
-        localStorage.setItem("darkmode", "dark");
+       
     }
     else {
         document.body.classList.remove("darkmode"); 
         console.log("Bright");
-        localStorage.setItem("darkmode", "bright");
+       
     }
   
     }
