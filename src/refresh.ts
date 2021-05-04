@@ -33,4 +33,5 @@ export function refresh(){
         console.log("Bright");
         localStorage.setItem("darkmode", "bright");
     }
+  
     }

@@ -157,7 +157,7 @@ body{
         border-radius: 3px;
 }
 .animationJump{
-        animation: jump 500ms;}
+        animation: jump 400ms;}
     
 #block{
     width: 20px;

@@ -13,3 +13,4 @@ export let characterQuote = localStorage.getItem("characterQuote");
 export let characterColor = localStorage.getItem("characterColor");
 export let character = document.getElementById("character") as HTMLElement;
 
+

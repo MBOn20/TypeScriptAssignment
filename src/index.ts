@@ -1,16 +1,17 @@
 import {block, character, darkmode, darkModechange, darkslategrey, getValues, jumper, jumpevent, startevent, teal, turquoise,} from "./DomUnits";
 import { change } from "./colorChange";
 import { refresh } from "./refresh";
+import { levelcounter, startInterval } from "./interval";
 
-let levelcounter : number = 0;
-let scorecounter : number = 0;
+
 
 
 window.addEventListener("load", refresh);
+window.addEventListener("load", startInterval);
+
 turquoise.addEventListener('click',function(){change("turquoise")});
 teal.addEventListener('click',function(){change("teal")});
 darkslategrey.addEventListener('click',function(){change("darkslategrey")});
-
 
 //Farbauswahl 
    /* if(farbe == "teal"){
@@ -85,13 +86,13 @@ darkModechange.addEventListener("click", () =>  {
    }
 });
 
-
-
 //Startbutton
 
 startevent.addEventListener("click", start);
 function start(){
-    console.log("Game started");
+            
+            
+            console.log("Game started");
 
         if(levelcounter==0){
             console.log("LEVEL 1 started")
@@ -101,6 +102,7 @@ function start(){
             console.log("LEVEL 2 started");
             level("animationblock2");
         }
+       
 };
 
 function level(animation: string){
@@ -121,39 +123,10 @@ function level(animation: string){
 };*/
 
 
+
 //Kontrolle LEVEL2
-const checkLevel = setInterval(function(): void{
-        if(levelcounter==0 && scorecounter == 5){
-            const levelOneSound = new Audio("../src/sound/Levelonesound.wav");
-            levelOneSound.play();
-                levelcounter=1;
-                scorecounter=0;
-                    block.classList.remove("animationblock");
-                     console.log("CheckLevel1-win funktioniert " +scorecounter)
-                     alert("Level 1 compilted")
-        }
-        else if(levelcounter==1 && scorecounter == 4){
-            const winSound = new Audio("../src/sound/Winsound.wav");
-            winSound.play();
-                levelcounter=0;
-                scorecounter=0;
-                    block.classList.remove("animationblock2");
-                     console.log("CheckLevel2-win funktioniert" +scorecounter);
-                     alert("You win!");
-        }
-    
-},10);
 
 
-//score (hängt ab 9)
-const checkscore = setInterval(function(): void{ 
-    const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    let score= document.getElementById("score") as HTMLElement;
-if(blockLeft == 0){
-++scorecounter;
-console.log(scorecounter);
-score.innerText ="Score: " + scorecounter;
-}}, 10);
 
 
 //Jumpbutton
@@ -161,25 +134,12 @@ score.innerText ="Score: " + scorecounter;
 jumpevent.addEventListener("click", jump);
 function jump(): void{
     const jumpsound = new Audio("../src/sound/Jumpsound.wav")
-        jumpsound.play()
+        jumpsound.play();
         jumper.classList.add("animationJump");  
         {setTimeout(function(): void {
             jumper.classList.remove("animationJump");},400);
         }         
 }
-
-//Verloren
-const checkLose = setInterval(function(): void{ 
-    const JumperTop : number = parseInt(window.getComputedStyle(jumper).getPropertyValue("top"));
-    const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-        if(blockLeft < 20 && blockLeft > 0 && JumperTop >= 130){
-            block.classList.remove("animationblock2");
-            block.classList.remove("animationblock");
-             alert("Oh noo! You lose! Do you want to play again?");
-             window.location.reload();
-        }
-
-}, 10);
 
 
 
