@@ -1,16 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" >
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Mellys Game</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
 </head>
-
 <body>
-    <my-beispiel></my-beispiel>
-    <script defer src="./build/bundle.js"></script>
-    <input type="text" id="myInput" />
+  
+<button id="darkModeButton" class="glow-on-hover">&#127769;</button>
+<h1>JUMPER-GAME</h1>
+    <div id="character"></div>
+    <div id="button-menu">
+    <div id="startbutton" class="myButton">START</div>
+    <div id="jumpbutton" class="myButton">JUMP!</div>
+    </div>
+    <span id="score">Score:</span>
+    <div id="jumpGame">
+        <div id="jumper">&#9829;</div>
+        <div id="block"></div>
+    </div>
+   
+    <button id="teal" class="glow-on-hover" >TEAL</button>
+    <button id="turquoise" class="glow-on-hover" >BLUE</button>
+    <button id="darkslategrey" class="glow-on-hover" >GREY</button>
+    <br/>
+    <div class="input-bar">
+    <p id="h4-name">Gib dein Namen ein: </p>
+    <p id="h4-quote">Gib dein Motivationsspruch ein:</p>
+</div>
+    <input type="text"  id="inputfield-name">
+    <input type="text"  id="inputfield-quote"><br/>
+    <button id="getValues" class="glow-on-hover"> Auslesen</button>
+    
 </body>
-
+<script defer src="./build/bundle.js"></script>
 </html>
