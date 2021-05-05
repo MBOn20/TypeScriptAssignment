@@ -1,4 +1,4 @@
-import {block, character, darkModechange, darkslategrey, getValues, jumper, jumpevent, startevent, teal, turquoise,} from "./DomUnits";
+import {block, body, character, darkModechange, darkslategrey, getValues, jumper, jumpevent, startevent, teal, turquoise,} from "./DomUnits";
 import { change } from "./colorChange";
 import { refresh } from "./refresh";
 import { levelcounter, startInterval } from "./interval";
@@ -78,7 +78,7 @@ function jump(): void{
  
 
   //Darkmode beim clicken
-  const darkChange=()=>{
+ /* const darkChange=()=>{
 
     document.body.classList.add("darkmode"); 
         console.log("Dark");
@@ -90,14 +90,19 @@ const bright=()=>{
     document.body.classList.remove("darkmode"); 
         console.log("Bright");
         localStorage.setItem("darkmode", "bright");
-}
+}*/
 
 darkModechange.addEventListener("click", () =>  {
     
-    if(document.body.className !== "darkmode"){
-        darkChange();
+    if(body.style.background== "white"){
+        darkmodenew("black");
     }
    else {
-        bright();
+    darkmodenew("white");
    }
 });
+
+function darkmodenew(changein : string){
+    body.style.background= changein;
+    localStorage.setItem("darkmode", changein);
+ }

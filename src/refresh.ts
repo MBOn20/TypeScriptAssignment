@@ -1,9 +1,14 @@
-import { character, characterColor, characterName, characterQuote, darkmode, jumper } from "./DomUnits";
+import { body, character, characterColor, characterName, characterQuote, darkmode, jumper } from "./DomUnits";
 
 export function refresh(){
-        console.log("bitte geh")
-            //Character nach dem Neuladen setzen
-       if(characterName == null && characterQuote == null || characterQuote == "" &&characterName == ""){
+       
+        characterrefresh();
+        colorChangeRefresh();
+        darkmodeRefresh();
+   
+    }
+    //Character nach dem Neuladen setzen
+    function characterrefresh(){if(characterName == null && characterQuote == null || characterQuote == "" &&characterName == ""){
         character.innerText ="Fülle doch mal die Felder unten aus"; 
         console.log("Locals funktioniert");
         console.log(characterQuote)
@@ -19,19 +24,25 @@ export function refresh(){
     
                                  }else if(characterName !== "" &&  characterQuote == ""){
                                      character.innerText ="Hallo " + characterName +'\n'+ '\n' + " Dir fällt immernoch kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Be yourself!";
-        } ;
-        //Characterfarbe beim Neuladen
-    jumper.style.background = String(characterColor);
-    //Darkmode beim Neuladen
-    if(darkmode == "dark"){
-        document.body.classList.add("darkmode"); 
-        console.log("Dark");
-       
+        };}
+
+         //Characterfarbe beim Neuladen
+   function colorChangeRefresh(){ 
+       jumper.style.background = String(characterColor);
     }
-    else {
-        document.body.classList.remove("darkmode"); 
-        console.log("Bright");
-       
-    }
+   //Darkmode beim Neuladen   
+function darkmodeRefresh(){   
+    
+    body.style.background= darkmode as string;
+}
+
+    /*if(darkmode== "black"){
+    body.style.background= "black";
+localStorage.setItem("darkmode", "black");
   
-    }
+}
+else {
+body.style.background= "white";
+localStorage.setItem("darkmode", "white");
+
+}*/

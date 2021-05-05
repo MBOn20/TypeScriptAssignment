@@ -1,4 +1,5 @@
 export const jumpevent = document.querySelector("#jumpbutton") as HTMLElement;
+export const body =  document.querySelector("body") as HTMLElement;
 export const startevent = document.querySelector("#startbutton") as HTMLElement;
 export const getValues = document.querySelector("#getValues") as HTMLElement;
 export const teal = document.querySelector("#teal") as HTMLElement;
