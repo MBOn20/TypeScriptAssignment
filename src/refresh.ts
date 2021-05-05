@@ -2,13 +2,15 @@ import { body, character, characterColor, characterName, characterQuote, darkmod
 
 export function refresh(){
        
-        characterrefresh();
+        characterRefresh();
         colorChangeRefresh();
         darkmodeRefresh();
    
     }
     //Character nach dem Neuladen setzen
-    function characterrefresh(){if(characterName == null && characterQuote == null || characterQuote == "" &&characterName == ""){
+    function characterRefresh(){
+        
+        if(characterName == null && characterQuote == null || characterQuote == "" && characterName == ""){
         character.innerText ="Fülle doch mal die Felder unten aus"; 
         console.log("Locals funktioniert");
         console.log(characterQuote)
@@ -19,10 +21,10 @@ export function refresh(){
                     
                     character.innerText ="Hallo " +  characterName + '\n' + "schön das du wieder da bist!" + '\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + characterQuote;
                         
-                }else if(characterName == "" && characterQuote !== ""){
+                }else if( characterQuote !== ""){
                              character.innerText ="Der Spruch war cool, fällt dur noch ein Name ein?"; 
     
-                                 }else if(characterName !== "" &&  characterQuote == ""){
+                                 }else if(characterName !== ""){
                                      character.innerText ="Hallo " + characterName +'\n'+ '\n' + " Dir fällt immernoch kein guter Spruch ein?" + '\n' + "Wie wäre es mit: " + '\n' + "Be yourself!";
         };}
 
@@ -36,13 +38,4 @@ function darkmodeRefresh(){
     body.style.background= darkmode as string;
 }
 
-    /*if(darkmode== "black"){
-    body.style.background= "black";
-localStorage.setItem("darkmode", "black");
-  
-}
-else {
-body.style.background= "white";
-localStorage.setItem("darkmode", "white");
-
-}*/
+    

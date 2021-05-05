@@ -1,5 +1,4 @@
 import {block, body, character, darkModechange, darkslategrey, getValues, jumper, jumpevent, startevent, teal, turquoise,} from "./DomUnits";
-import { change } from "./colorChange";
 import { refresh } from "./refresh";
 import { levelcounter, startInterval } from "./interval";
 
@@ -12,14 +11,37 @@ getValues.addEventListener("click", setCharacter);
 startevent.addEventListener("click", start);
 jumpevent.addEventListener("click", jump);
 
+
+//Startbutton
+function start(){
+    console.log("Game started");
+
+if(levelcounter==0){
+    console.log("LEVEL 1 started")
+    level("animationblock");
+}
+else if(levelcounter==1){
+    console.log("LEVEL 2 started");
+    level("animationblock2");
+}};
+
+
+//Jumpbutton
+function jump(): void{
+    const jumpsound = new Audio("../src/sound/Jumpsound.wav")
+        jumpsound.play();
+        jumper.classList.add("animationJump");  
+           /*FC*/ {setTimeout(function(): void {
+                jumper.classList.remove("animationJump");},400);
+            }
+}
+
 //Eingabeüberprüfung und Character setzen
 function setCharacter(){
     let jumpername = (<HTMLInputElement>document.getElementById("inputfield-name")).value;
     let quote = (<HTMLInputElement>document.getElementById("inputfield-quote")).value;
     localStorage.setItem("characterName", jumpername);
     localStorage.setItem("characterQuote", quote);
-
-    console.log(quote + jumpername + "setCharacter funktionier");
 
    if(jumpername != "" && quote != ""){
         character.innerText ="Hallo " + jumpername +'\n'+ '\n' + " Dein aktueller Spruch lautet:" + '\n' + quote;
@@ -41,57 +63,7 @@ function setCharacter(){
     (<HTMLInputElement>document.getElementById("inputfield-name")).value ="";         
 }
 
-
-
-//Startbutton
-function start(){
-            console.log("Game started");
-
-        if(levelcounter==0){
-            console.log("LEVEL 1 started")
-            level("animationblock");
-        }
-        else if(levelcounter==1){
-            console.log("LEVEL 2 started");
-            level("animationblock2");
-        }
-       
-};
-
-function level(animation: string){
-    block.classList.add(animation);
-}
-
-//Jumpbutton
-
-
-function jump(): void{
-    const jumpsound = new Audio("../src/sound/Jumpsound.wav")
-        jumpsound.play();
-        jumper.classList.add("animationJump");  
-        {setTimeout(function(): void {
-            jumper.classList.remove("animationJump");},400);
-        }         
-}
-
-
- 
-
-  //Darkmode beim clicken
- /* const darkChange=()=>{
-
-    document.body.classList.add("darkmode"); 
-        console.log("Dark");
-        localStorage.setItem("darkmode", "dark");
-}
-
-const bright=()=>{
-
-    document.body.classList.remove("darkmode"); 
-        console.log("Bright");
-        localStorage.setItem("darkmode", "bright");
-}*/
-
+//Darkmode FC-teilweise, siehe Doku
 darkModechange.addEventListener("click", () =>  {
     
     if(body.style.background== "white"){
@@ -102,7 +74,18 @@ darkModechange.addEventListener("click", () =>  {
    }
 });
 
+
 function darkmodenew(changein : string){
     body.style.background= changein;
     localStorage.setItem("darkmode", changein);
  }
+
+
+function level(animation: string){
+    block.classList.add(animation);
+    }
+
+function change(farbe: string){
+        jumper.style.background= farbe;
+        localStorage.setItem("characterColor", farbe);
+    }
