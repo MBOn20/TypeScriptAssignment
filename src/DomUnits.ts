@@ -8,10 +8,11 @@ export const turquoise = document.querySelector("#turquoise") as HTMLElement;
 export const jumper = document.getElementById("jumper") as HTMLElement;
 export const block = document.getElementById("block") as HTMLElement;
 export const darkModechange = document.querySelector("#darkModeButton") as HTMLElement;
+export let character = document.getElementById("character") as HTMLElement;
 export let darkmode = localStorage.getItem("darkmode");
 export let characterName = localStorage.getItem("characterName");
 export let characterQuote = localStorage.getItem("characterQuote");
 export let characterColor = localStorage.getItem("characterColor");
-export let character = document.getElementById("character") as HTMLElement;
+
 
 

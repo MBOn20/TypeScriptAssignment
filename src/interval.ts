@@ -13,7 +13,7 @@ export function startInterval(){ setInterval(function(): void{
 function checkLose(){  
     const jumperTop : number = parseInt(window.getComputedStyle(jumper).getPropertyValue("top"));
     const blockLeft : number = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-        if(blockLeft < 20 && blockLeft > 0 && jumperTop >= 130){ /*FC-teilweise, siehe Doku*/
+        if(blockLeft < 20 && blockLeft > 0 && jumperTop >= 130){ /*FC-teilweise*/
             block.classList.remove("animationblock2");
             block.classList.remove("animationblock");
              alert("Oh noo! You lose! Do you want to play again?");
@@ -51,5 +51,4 @@ if(blockLeft == 0){
 scorecounter++;
 console.log(scorecounter);
 score.innerText ="Score: " + scorecounter;
-}
-}
+}}
